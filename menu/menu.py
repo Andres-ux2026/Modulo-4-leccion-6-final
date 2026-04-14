@@ -1,8 +1,14 @@
 import os
+from clases.producto import Producto 
+from clases.catalogo import Catalogo
 
+def limpiar_pantalla():
+    os.system('cls' if os.name == 'nt' else 'clear')
+
+mi_productos = Catalogo()
 def menu_principal():
     while True:
-        limpiar_pantalla()
+        
         print("==========================================")
         print("       SISTEMA DE ECOMMERCE ")
         print("==========================================")
@@ -14,8 +20,10 @@ def menu_principal():
         rol = input("Seleccione su rol: ")
     
         if rol == "1":
+            limpiar_pantalla()
             menu_admin()
         elif rol == "2":
+            limpiar_pantalla()
             menu_cliente()
         elif rol == "3":
             return False
@@ -36,32 +44,62 @@ def menu_cliente():
         print("6- <-- Volver al Menú Principal")
 
         opcion= int(input("Ingrese una opcion: "))
-        return opcion
+        if opcion == "1":
+            mi_productos.listar_catalogo()
+            input("\nPresione Enter para continuar...")
+        elif opcion == "6":
+            break
 
 
 def menu_admin():
     while True:
-        limpiar_pantalla()
+        
         print("==========================================")
         print("        PANEL DE ADMINISTRACIÓN")
         print("==========================================")
-        print("1- Ver inventario completo")
+        print("1- Ver Catalogo")
         print("2- Agregar nuevo producto")
         print("3- Actualizar productos")
         print("4- Eliminar producto")
         print("5- <-- Volver al Menú Principal")
         print("------------------------------------------")
         
-        opcion = input("Seleccione una acción: ")
+        opcion = input("Seleccione una opción: ")
         
-        if opcion == "5":
-            break
-        elif opcion in ["1", "2", "3", "4"]:
-            print(f"\nHas seleccionado la opción {opcion}.")
-            input("\nPresione Enter para continuar...")
+        if opcion == "1":
+            limpiar_pantalla()
+            print("==========================================")
+            print("                CATALOGO")
+            print("==========================================")
+            mi_productos.listar_catalogo
+             
+
+        elif opcion =="2":
+            limpiar_pantalla()
+            print("==========================================")
+            print("         AGREGAR NUEVO PRODUCTO")
+            print("==========================================")
+            cod_prod = input("Ingrese ID del producto:")
+            nom_prod = input("Ingrese Nombre del producto:")
+            cat_prod = input("Ingrese categoria:")
+            pre_prod = input("Ingrese precio:")
+            stock_prod = input("Ingrese Stock del producto:")
+            producto= Producto(cod_prod,nom_prod,cat_prod,pre_prod,stock_prod)
+            mi_productos.agregar_producto(producto)
+            mi_productos.listar_catalogo()
+
+        elif opcion =="3":
+            limpiar_pantalla()
+            print("==========================================")
+            print("          ACTUALIZAR PRODUCTOS")
+            print("==========================================")
+            
+        elif opcion =="4":
+            limpiar_pantalla()
+            print("==========================================")
+            print("           ELIMINAR PRODUCTO")
+            print("==========================================")
         else:
             print("\nOpción no válida. Intente de nuevo.")
             input()
 
-def limpiar_pantalla():
-    os.system('cls' if os.name == 'nt' else 'clear')

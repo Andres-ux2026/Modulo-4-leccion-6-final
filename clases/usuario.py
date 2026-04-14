@@ -20,27 +20,5 @@ class Cliente(Usuario):
     
 
 
-class Producto:
-    def __init__(self,id,nombre,categoria,precio):
-        self.id = id
-        self.nombre = nombre
-        self.categoria = categoria
-        self.precio = precio
 
 
-class Catalogo:
-    def __init__(self):
-        self.producto = []
-
-        
-    def agregar_producto(self,producto):
-        self.producto.append(producto)
-
-
-
-    def listar_catalogo(self):
-        for producto in self.productos:
-         print(producto)
-
-    def eliminar_producto():
-        pass
