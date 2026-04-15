@@ -71,8 +71,8 @@ def menu_admin():
             print("==========================================")
             print("                CATALOGO")
             print("==========================================")
-            mi_productos.listar_catalogo
-             
+            mi_productos.listar_catalogo()
+            input("\nPresione Enter para volver al menú...") 
 
         elif opcion =="2":
             limpiar_pantalla()
@@ -84,9 +84,10 @@ def menu_admin():
             cat_prod = input("Ingrese categoria:")
             pre_prod = input("Ingrese precio:")
             stock_prod = input("Ingrese Stock del producto:")
+
             producto= Producto(cod_prod,nom_prod,cat_prod,pre_prod,stock_prod)
             mi_productos.agregar_producto(producto)
-            mi_productos.listar_catalogo()
+            
 
         elif opcion =="3":
             limpiar_pantalla()
@@ -99,6 +100,10 @@ def menu_admin():
             print("==========================================")
             print("           ELIMINAR PRODUCTO")
             print("==========================================")
+            input("\nPresione Enter para volver al menú...")
+
+        elif opcion =="5":
+            input()
         else:
             print("\nOpción no válida. Intente de nuevo.")
             input()

@@ -16,8 +16,25 @@ class Catalogo:
          for p in self.producto:
             print(p) 
 
-    def eliminar_producto():
-        pass
+    def buscar_por_id(self,id):
+          for p in self.producto:
+             if p.id == id:
+                return p  
 
+    def eliminar_producto(self,id):
+       p = self.buscar_por_id(id)
+       self.producto.remove(p)
+        
+    def guardar_catalogo(self,nombre_archivo="catalogo.txt"):
+       try:
+          with open(nombre_archivo,"w") as f:
+             for p in self.producto:
+                f.write(f"{p.id},{p.nombre},{p.categoria},{p.precio},{p.stock}\n")
+       except Exception  as error:
+          print(f"error en el archivo: {error}")
+           
+
+             
+          
 
 

@@ -1,13 +1,20 @@
 
-
+from clases.producto import Producto
 
 class Carrito():
    def __init__(self):
-      self.producto = []
+      self.items = {}
 
-   def agregar_carrito():
-      pass
-   def calcular_total():
+   def __str__(self):
+      return f"{self.items}"   
+
+   def agregar_carrito(self,producto,cantidad):
+      if producto in self.items:
+         self.items["producto"]+= cantidad
+      else:
+         self.items["producto"]= cantidad
+            
+   def calcular_total(self):
         pass
-   def vaciar_carrito():
+   def vaciar_carrito(self):
      pass   
