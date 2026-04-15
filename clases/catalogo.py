@@ -65,7 +65,22 @@ class Catalogo:
        except Exception as error:
                print(f"Error al cargar el archivo: {error}")
        
-
+    def actualizar_producto(self,id,nuevo_nombre,nueva_cat,nuevo_precio,nuevo_stock):
+      if not self.producto:
+       print("No hay productos ingresados al sistema:")
+      else: 
+       for p in self.producto:
+        if p.id == id:
+            # Actualizamos los atributos del objeto
+            p.nombre = nuevo_nombre
+            p.categoria = nueva_cat
+            p.precio = nuevo_precio
+            p.stock = nuevo_stock
+            
+            # Guardamos los cambios en el archivo txt
+            self.guardar_catalogo()
+            return True
+       return False
            
 
              

@@ -99,7 +99,21 @@ def menu_admin():
             print("==========================================")
             print("          ACTUALIZAR PRODUCTOS")
             print("==========================================")
-            
+            mi_productos.abrir_catalogo()
+            mi_productos.listar_catalogo()
+            opcion = input("Escriba ID del producto a modificar:")
+            cod_prod = input("Ingrese ID del producto:")
+            nom_prod = input("Ingrese Nombre del producto:")
+            cat_prod = input("Ingrese categoria:")
+            pre_prod = input("Ingrese precio:")
+            stock_prod = input("Ingrese Stock del producto:")
+            print("==========================================")
+            opcion = input("\nPresione Y para guardar el producto:") 
+            if opcion == "Y":
+                mi_productos.actualizar_producto(cod_prod,nom_prod,cat_prod,pre_prod,stock_prod)
+            else:
+                print("Producto no guardado")
+
         elif opcion =="4":
             limpiar_pantalla()
             print("==========================================")
