@@ -80,6 +80,8 @@ class Catalogo:
             # Guardamos los cambios en el archivo txt
             self.guardar_catalogo()
             return True
+        else:
+            print("El id no coincide")
        return False
            
 
