@@ -12,7 +12,7 @@ class Catalogo:
 
     def listar_catalogo(self):
         if not self.producto:
-         print("No hay productos registrados en el sistema.")
+         print("El catalogo esta vacio.")
         else:
          for p in self.producto:
             print(p) 
@@ -31,8 +31,8 @@ class Catalogo:
     
        if producto_encontrado:
         self.producto.remove(producto_encontrado)
-        # IMPORTANTE: Guardamos los cambios en el archivo txt
         self.guardar_catalogo()
+        print("Producto eliminado")
         return True
        return False
         
@@ -48,15 +48,13 @@ class Catalogo:
     def abrir_catalogo(self,nombre_archivo="catalogo.txt"):
        
        try:
-        if os.path.exists(nombre_archivo): # Verificamos si el archivo existe
+        if os.path.exists(nombre_archivo): 
             with open(nombre_archivo, "r") as f:
-                self.producto = [] # Limpiamos la lista actual para cargar los del archivo
+                self.producto = []
                 for linea in f:
-                    # Quitamos el salto de línea y separamos por comas
                     datos = linea.strip().split(",")
                     if len(datos) == 5:
                         id_p, nombre, cat, precio, stock = datos
-                        # Creamos el objeto Producto y lo añadimos a la lista
                         nuevo_p = Producto(id_p, nombre, cat, precio, stock)
                         self.producto.append(nuevo_p)
            
@@ -67,29 +65,25 @@ class Catalogo:
        
     def actualizar_producto(self,id,nuevo_nombre,nueva_cat,nuevo_precio,nuevo_stock):
       if not self.producto:
-       print("No hay productos ingresados al sistema:")
+        print("El catalogo esta vacio:")
       else: 
-       for p in self.producto:
-        if p.id == id:
-            # Actualizamos los atributos del objeto
-            p.nombre = nuevo_nombre
-            p.categoria = nueva_cat
-            p.precio = nuevo_precio
-            p.stock = nuevo_stock
-            
-            # Guardamos los cambios en el archivo txt
-            self.guardar_catalogo()
-            return True
-        else:
-            print("El id no coincide")
-       return False
+          for p in self.producto:
+           if p.id == id:
+             p.nombre = nuevo_nombre
+             p.categoria = nueva_cat
+             p.precio = nuevo_precio
+             p.stock = nuevo_stock
+             self.guardar_catalogo()
+             return True
+      print("El id no coincide")
+      return False
       
     def buscar_producto(self,msj:str):
         encontrar= False
     
         for i in self.producto:
              if msj.lower() in i.nombre.lower() or msj.lower() in i.categoria.lower():
-                print(f"ID: {i.id} - Nombre: {i.nombre} - Precio: ${i.precio} - Categoria: {i.categoria}")
+                print(f"ID: {i.id} - Nombre: {i.nombre} - Precio: ${i.precio} - Categoria: {i.categoria} - Stock: {i.stock}")
                 encontrar = True
         if not encontrar: 
          print("productos no encontrado por favor revise nuestro catalogo:")        

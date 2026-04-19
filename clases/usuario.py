@@ -1,6 +1,7 @@
 import os
 from clases.producto import Producto 
 from clases.catalogo import Catalogo
+from clases.carrito import Carrito
 
 
 
@@ -26,7 +27,7 @@ class Admin(Usuario):
 
     def menu_admin(self,mi_productos):
      while True:
-        
+        limpiar_pantalla()
         print("==========================================")
         print("        PANEL DE ADMINISTRACIÓN")
         print("==========================================")
@@ -46,26 +47,40 @@ class Admin(Usuario):
             print("==========================================")
             mi_productos.abrir_catalogo()
             mi_productos.listar_catalogo()
-            input("\nPresione Enter para volver al menú...") 
+            input("Presione Enter para volver al menú...") 
 
         elif opcion =="2":
             limpiar_pantalla()
             print("==========================================")
             print("         AGREGAR NUEVO PRODUCTO")
             print("==========================================")
-            cod_prod = input("Ingrese ID del producto:")
-            nom_prod = input("Ingrese Nombre del producto:")
-            cat_prod = input("Ingrese categoria:")
-            pre_prod = input("Ingrese precio:")
-            stock_prod = input("Ingrese Stock del producto:")
-            print("==========================================")
-            opcion = input("\nPresione Y para guardar el producto:") 
-            if opcion == "Y":
-                producto= Producto(cod_prod,nom_prod,cat_prod,pre_prod,stock_prod)
-                mi_productos.agregar_producto(producto)
-                mi_productos.guardar_catalogo()
-            else:
-                print("Producto no guardado")
+            try:
+                cod_prod = input("Ingrese ID del producto:")
+                if mi_productos.buscar_por_id(cod_prod):
+                     print(f"ERROR: El ID '{cod_prod}' ya existe en el catálogo.")
+                     input("Presione Enter para intentar con otro ID...")
+                     continue
+                nom_prod = input("Ingrese Nombre del producto:")
+                cat_prod = input("Ingrese categoria:")
+                pre_prod = int(input("Ingrese precio:"))
+                stock_prod = int(input("Ingrese Stock del producto:"))
+                print("==========================================")
+                confirmacion = input("Presione Y para guardar el producto:") 
+                if confirmacion == "Y":
+                  producto= Producto(cod_prod,nom_prod,cat_prod,pre_prod,stock_prod)
+                  mi_productos.agregar_producto(producto)
+                  mi_productos.guardar_catalogo()
+                  print("Producto Guardado")
+                else:
+                 print("Producto no guardado")
+
+                input("\nPresione Enter para continuar...")
+            except ValueError:
+                # Se ejecuta si el usuario ingresa texto donde debe ir un número
+                print("ERROR: El precio y el stock deben ser números enteros.")
+            except Exception as e:
+                 print(f"Ocurrió un error inesperado: {e}")
+
 
         elif opcion =="3":
             limpiar_pantalla()
@@ -73,23 +88,44 @@ class Admin(Usuario):
             print("          ACTUALIZAR PRODUCTOS")
             print("==========================================")
             mi_productos.abrir_catalogo()
+            if len(mi_productos.producto) == 0: 
+                print("El catálogo está vacío.")
+                input("Presione Enter para volver al menú...")
+                continue # Regresa al menú principal
             mi_productos.listar_catalogo()
-            opcion_mod = input("Escriba ID del producto a modificar:")
-            #cod_prod = input("Ingrese ID del producto:")
-            nom_prod = input("Ingrese Nombre del producto:")
-            cat_prod = input("Ingrese categoria:")
-            pre_prod = input("Ingrese precio:")
-            stock_prod = input("Ingrese Stock del producto:")
-            print("==========================================")
-            opcion2 = input("\nPresione Y para guardar el producto:") 
-            if opcion2 == "Y":
-                modificar = mi_productos.actualizar_producto(opcion_mod,nom_prod,cat_prod,pre_prod,stock_prod)
-                if modificar:
-                    print("\nProducto actualizado y guardado correctamente.")
+            
+           
+            try:
+                opcion_mod = input("Escriba ID del producto a modificar:")
+                producto_encontrado = mi_productos.buscar_por_id(opcion_mod)
+                if not producto_encontrado:
+                    print(f"ERROR: El ID '{opcion_mod}' no existe en el catálogo.")
+                    input("Presione Enter para volver al menú...")
+                    continue
+                   
+                nom_prod = input("Ingrese Nombre del producto:")
+                cat_prod = input("Ingrese categoria:")
+                pre_prod = int(input("Ingrese precio:"))
+                stock_prod = int(input("Ingrese Stock del producto:"))
+                print("==========================================")
+                opcion2 = input("Presione Y para guardar el producto:") 
+                if opcion2 == "Y":
+                  modificar = mi_productos.actualizar_producto(opcion_mod,nom_prod,cat_prod,pre_prod,stock_prod)
+                  if modificar:
+                     print("Producto actualizado y guardado correctamente.")
+                  else:
+                    print(" Error: No se encontró un producto con ese ID.")
                 else:
-                 print("\n Error: No se encontró un producto con ese ID.")
-            else:
-                print("Producto no guardado")
+                 print("Producto no guardado")
+                 input("Presione Enter para volver al menú...") 
+            except ValueError:
+                print("ERROR: El precio y el stock deben ser números enteros.")
+                input("Presione Enter para volver al menú...")
+            except Exception as e:
+                 print(f"Ocurrió un error inesperado: {e}")
+                 input("Presione Enter para volver al menú...")
+
+
 
         elif opcion =="4":
             limpiar_pantalla()
@@ -97,11 +133,22 @@ class Admin(Usuario):
             print("           ELIMINAR PRODUCTO")
             print("==========================================")
             mi_productos.abrir_catalogo()
+            if len(mi_productos.producto) == 0: 
+                print("El catálogo está vacío.")
+                input("Presione Enter para volver al menú...")
+                continue
             mi_productos.listar_catalogo()
+        
             opcion_eli = input("Escriba ID del producto a eliminar:")
-            mi_productos.eliminar_producto(opcion_eli)
-
-            input("\nPresione Enter para volver al menú...")
+            producto_encontrado = mi_productos.buscar_por_id(opcion_eli)
+            if not producto_encontrado:
+                    print(f"ERROR: El ID '{opcion_eli}' no existe en el catálogo.")
+                    input("Presione Enter para volver al menú...")
+                    continue
+            else:
+                mi_productos.eliminar_producto(opcion_eli)
+                input("\nPresione Enter para volver al menú...")
+              
 
         elif opcion =="5":
             limpiar_pantalla()
@@ -116,9 +163,9 @@ class Admin(Usuario):
 class Cliente(Usuario):
     def __init__(self, rut, nombre, apellido, tipo_usuario):
         super().__init__(rut, nombre, apellido, tipo_usuario)
-
+        self.carrito = Carrito()
     def menu_cliente(self,mi_productos):
-    
+       mi_productos.abrir_catalogo()
        while True:
             print("==========================================")
             print("        PANEL DE CLIENTE")
@@ -134,14 +181,43 @@ class Cliente(Usuario):
             if opcion == "1":
                 limpiar_pantalla()
                 mi_productos.listar_catalogo()
-                input("\nPresione Enter para continuar...")
+                input("\nPresione Enter para volver al menu...")
             elif opcion =="2":
                 limpiar_pantalla()
-                mi_productos.abrir_catalogo()
                 msj=input("Ingrese Nombre o categoria del producto a buscar:")
                 mi_productos.buscar_producto(msj)
-                input("\nPresione Enter para continuar...")
+                input("\nPresione Enter para vover al menu ...")
+
+            elif opcion =="3":
+                limpiar_pantalla()
+                msj=input("Ingrese Nombre o categoria del producto a buscar:")
+                mi_productos.buscar_producto(msj)
+                op_1 = input("Ingresa ID del producto a agregar:")
+                op_2 = input("Ingrese la cantidad del producto:")
+                buscar= mi_productos.buscar_por_id(op_1)
+                if buscar:
+                    # Ahora sí, pasamos el objeto 'producto_real' completo
+                    self.carrito.agregar_carrito(buscar,op_2)
+                    print(f"{buscar.nombre} agregado al carrito.")
+                    input("\nPresione Enter para vover al menu ...")
+                else:
+                    print("Error: ID de producto no encontrado.")
+                    input("\nPresione Enter para vover al menu ...")
+            elif opcion =="4": 
+                limpiar_pantalla()
+                self.carrito.ver_carrito()     
+                input("\nPresione Enter para vover al menu ...")
+            elif opcion=="5":
+                limpiar_pantalla
+                self.carrito.ver_carrito()
+                op_compra= input("Para confirmar su compra presione Y:") 
+                if op_compra== "Y":
+                    self.carrito.confirmar_compra(mi_productos)   
+                    input("\nPresione Enter para vover al menu ...")
             elif opcion == "6":
+                if len(self.carrito.items) > 0:
+                    print("Los productos del carrito se borraran:")
+                    self.carrito.devolver_stock_
                 break
 
 
