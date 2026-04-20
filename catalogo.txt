@@ -1,1 +1,2 @@
 1,calcetines,vestuario,10000,1
+2,colchon,hogar,1200000,16

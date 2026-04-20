@@ -33,7 +33,7 @@ end
 # Unset irrelevant variables.
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV "/workspaces/Modulo-4-ejercicio-final/capsulacorp"
+set -gx VIRTUAL_ENV "/workspaces/Modulo-4-leccion-6-final/capsulacorp"
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH

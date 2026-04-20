@@ -5,3 +5,7 @@ Producto: calcetines | Cantidad: 9 | Subtotal: $90000
 TOTAL PAGADO: $90000
 ----------------------------------------
 
+--- ORDEN DE COMPRA: 2026-04-20 03:35:33Producto: colchon | Cantidad: 2 | Subtotal: $2400000
+TOTAL PAGADO: $2400000
+----------------------------------------
+
