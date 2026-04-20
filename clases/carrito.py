@@ -45,8 +45,8 @@ class Carrito():
       for p,c  in self.items.items():
          subtotal = (p.precio) * (c)
          total += subtotal  
-         print(f"Producto:{p.nombre}- cantidad:{c}-subtotal:{subtotal}")   
-      print(f"total de la compra:{total}")    
+         print(f"Producto:{p.nombre}- cantidad:{c}-Subtotal:${subtotal}")   
+      print(f"Total de la compra:${total}")    
             
 
    def vaciar_carrito(self):
@@ -77,7 +77,7 @@ class Carrito():
                 archivo.write("-" * 40 + "\n\n")
                 catalogo.guardar_catalogo()  
 
-            print(f"Compra confirmada por ${total}. Registro guardado en ordenes.txt.")
+            print(f"Compra confirmada por ${total}")
             self.vaciar_carrito()
             return True
 

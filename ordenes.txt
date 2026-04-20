@@ -13,3 +13,9 @@ TOTAL PAGADO: $2400000
 TOTAL PAGADO: $2400000
 ----------------------------------------
 
+--- ORDEN DE COMPRA: 2026-04-20 21:04:02Producto: calcetines | Cantidad: 4 | Subtotal: $400000
+Producto: colchon | Cantidad: 1 | Subtotal: $1200000
+Producto: buzo  | Cantidad: 10 | Subtotal: $200000
+TOTAL PAGADO: $1800000
+----------------------------------------
+
