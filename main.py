@@ -1,6 +1,6 @@
 
 from clases.catalogo import Catalogo
-from clases.usuario import Admin, Cliente
+from clases.usuario import Admin, Cliente,limpiar_pantalla
 from clases.carrito import Carrito
 
 class Tienda:
@@ -15,7 +15,7 @@ class Tienda:
         def iniciar(self):
 
          while True:
-                 
+            limpiar_pantalla()    
             print("==========================================")
             print("       SISTEMA DE ECOMMERCE ")
             print("==========================================")

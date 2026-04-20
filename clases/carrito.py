@@ -10,29 +10,20 @@ class Carrito():
    def agregar_carrito(self,producto,cantidad):
        
        try:
-        # 1. Convertimos entradas a enteros para cálculos matemáticos
         cantidad = int(cantidad)
         stock_actual = int(producto.stock)
-
-        # 2. Validar si la cantidad ingresada es válida
         if cantidad <= 0:
             print("Error: La cantidad debe ser mayor a 0.")
             return False
-
-        # 3. Validar si hay stock suficiente
         if cantidad > stock_actual:
             print(f"No se puede agregar: Stock insuficiente.")
             print(f"Solicitado: {cantidad} | Disponible: {stock_actual}")
             return False
-
-        # 4. Lógica de agregado al carrito
         if producto in self.items:
             self.items[producto] += cantidad
         else:
             self.items[producto] = cantidad
-        
-        # 5. ACTUALIZACIÓN EN TIEMPO REAL: 
-        # Restamos la cantidad del stock del producto original
+    
         producto.stock = stock_actual - cantidad
         
         print(f"{producto.nombre} agregado al carrito.")
@@ -57,9 +48,6 @@ class Carrito():
          print(f"Producto:{p.nombre}- cantidad:{c}-subtotal:{subtotal}")   
       print(f"total de la compra:{total}")    
             
-   def calcular_total(self):
-        return 
-
 
    def vaciar_carrito(self):
      self.items.clear()  
@@ -99,13 +87,10 @@ class Carrito():
 
 
    def devolver_stock_(self):
-      """Llama a esta función si el usuario sale sin comprar o cancela"""
       if not self.items:
         return
 
       for producto, cantidad in self.items.items():
-        # Sumamos de vuelta lo que estaba en el carrito al stock del producto
         producto.stock = int(producto.stock) + cantidad
-    
-      self.items.clear() # Vaciamos el carrito
-      print("Compra cancelada. El stock ha sido devuelto al catálogo.")
+      self.items.clear() 
+     

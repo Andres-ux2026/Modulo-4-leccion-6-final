@@ -77,7 +77,6 @@ class Admin(Usuario):
 
                 input("Presione Enter para volver al menu...")
             except ValueError:
-                # Se ejecuta si el usuario ingresa texto donde debe ir un número
                 print("ERROR: El precio y el stock deben ser números enteros.")
             except Exception as e:
                  print(f"Ocurrió un error inesperado: {e}")
@@ -130,7 +129,7 @@ class Admin(Usuario):
         elif opcion =="4":
             limpiar_pantalla()
             print("=========================================================================")
-            print("           ELIMINAR PRODUCTO")
+            print("                             ELIMINAR PRODUCTO")
             print("=========================================================================")
             mi_productos.abrir_catalogo()
             if len(mi_productos.producto) == 0: 
@@ -215,11 +214,10 @@ class Cliente(Usuario):
                 buscar= mi_productos.buscar_por_id(op_1)
                 if buscar:
                     self.carrito.agregar_carrito(buscar,op_2)
-                    print(f"{buscar.nombre} agregado al carrito.")
-                    input("\nPresione Enter para vover al menu ...")
+                    input("Presione Enter para vover al menu ...")
                 else:
                     print("Error: ID de producto no encontrado.")
-                    input("\nPresione Enter para vover al menu ...")
+                    input("Presione Enter para vover al menu ...")
             elif opcion =="4": 
                 limpiar_pantalla()
                 print("=============================================")
@@ -227,7 +225,7 @@ class Cliente(Usuario):
                 print("=============================================")
                 self.carrito.ver_carrito()  
                 print("=============================================")   
-                input("\nPresione Enter para vover al menu ...")
+                input("Presione Enter para vover al menu ...")
             elif opcion=="5":
                 limpiar_pantalla()
                 
@@ -239,7 +237,7 @@ class Cliente(Usuario):
                 op_compra= input("Para confirmar su compra presione Y:").upper() 
                 if op_compra== "Y":
                     self.carrito.confirmar_compra(mi_productos)   
-                    input("\nPresione Enter para vover al menu ...")
+                    input("Presione Enter para vover al menu ...")
                 else:
                     print("opcion incorrecta compra no realizada")   
             elif opcion == "6":
@@ -248,7 +246,7 @@ class Cliente(Usuario):
                      break
                 op_salir = input("Hay productos en el carro de compras.Si sale se cancelara la compra. 'Si desea salir presione' 'Y':").upper()
                 if op_salir == "Y":
-                        print("Productos eliminados del carro de compras")
+                        input("Productos eliminados del carro de compras...")
                         self.carrito.devolver_stock_()
                         break
                 else:

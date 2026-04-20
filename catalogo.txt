@@ -1,3 +1,3 @@
-1,calcetines,vestuario,10000,1
+1,calcetines,vestuario,100000,20
 2,colchon,hogar,1200000,14
 3,televisor,tecnologia,1000000,20
