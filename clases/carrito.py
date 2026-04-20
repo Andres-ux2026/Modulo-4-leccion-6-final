@@ -35,40 +35,15 @@ class Carrito():
         # Restamos la cantidad del stock del producto original
         producto.stock = stock_actual - cantidad
         
-        print(f"✅ {producto.nombre} agregado al carrito.")
-        print(f"📦 Stock restante actualizado: {producto.stock}")
+        print(f"{producto.nombre} agregado al carrito.")
+        print(f"Stock restante actualizado: {producto.stock}")
         return True
 
        except ValueError:
-        print("❌ ERROR: La cantidad debe ser un número entero.")
+        print("ERROR: La cantidad debe ser un número entero.")
         return False
 
-       """  cantidad = int(cantidad)
-        stock_actual = int(producto.stock) # Convertimos el stock a número
-
-        # 1. Validar si la cantidad ingresada es mayor al stock disponible
-        if cantidad > stock_actual:
-            print(f"No se puede agregar: Stock insuficiente.")
-            print(f"Solicitado: {cantidad} | Disponible: {stock_actual}")
-            return False # Retornamos False para indicar que no se pudo agregar
-
-        # 2. Validar si al sumar lo que ya hay en el carrito superamos el stock
-        cantidad_en_carrito = self.items.get(producto, 0)
-        if cantidad_en_carrito + cantidad > stock_actual:
-            print(f"Error: Ya tienes {cantidad_en_carrito} en el carrito.")
-            print(f"No puedes agregar {cantidad} más porque superarías el stock de {stock_actual}.")
-            return False
-        if producto in self.items:
-         self.items[producto]+= int(cantidad)
-        else:
-         self.items[producto]= int(cantidad)
-         producto.stock = stock_actual - cantidad
-        
-         print(f"¡Éxito! {producto.nombre} agregado al carrito.")
-         print(f"Stock restante en tienda: {producto.stock}")
-         return True
-          """
-
+      
 
    def ver_carrito(self):
 
@@ -77,7 +52,7 @@ class Carrito():
             return
       total=0
       for p,c  in self.items.items():
-         subtotal = int(p.precio) * int(c)
+         subtotal = (p.precio) * (c)
          total += subtotal  
          print(f"Producto:{p.nombre}- cantidad:{c}-subtotal:{subtotal}")   
       print(f"total de la compra:{total}")    
@@ -101,8 +76,7 @@ class Carrito():
                 archivo.write(f"--- ORDEN DE COMPRA: {ahora}")
                 
                 for p, c in self.items.items():
-                    nuevo_stock = (p.stock) - (c)
-                    p.stock = str(nuevo_stock) 
+                   
                     precio = (p.precio)
                     cantidad = (c)
                     subtotal = precio * cantidad
@@ -115,7 +89,7 @@ class Carrito():
                 archivo.write("-" * 40 + "\n\n")
                 catalogo.guardar_catalogo()  
 
-            print(f" Compra confirmada por ${total}. Registro guardado en ordenes.txt.")
+            print(f"Compra confirmada por ${total}. Registro guardado en ordenes.txt.")
             self.vaciar_carrito()
             return True
 
