@@ -2,7 +2,7 @@
 from clases.catalogo import Catalogo
 from clases.usuario import Admin, Cliente
 from clases.carrito import Carrito
-
+#holaaaaa
 
 class Tienda:
         def __init__(self):
