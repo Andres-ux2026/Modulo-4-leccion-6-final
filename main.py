@@ -1,7 +1,7 @@
 
 from clases.catalogo import Catalogo
 from clases.usuario import Admin, Cliente,limpiar_pantalla
-from clases.carrito import Carrito
+
 
 class Tienda:
         def __init__(self):

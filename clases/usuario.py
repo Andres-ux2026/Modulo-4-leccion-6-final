@@ -226,20 +226,24 @@ class Cliente(Usuario):
                 self.carrito.ver_carrito()  
                 print("=============================================")   
                 input("Presione Enter para vover al menu ...")
-            elif opcion=="5":
+
+            elif opcion =="5":
                 limpiar_pantalla()
-                
                 print("==============================================")
                 print("               CONFIRMA TU COMPRA")
                 print("==============================================")
                 self.carrito.ver_carrito()
                 print("==============================================")
-                op_compra= input("Para confirmar su compra presione Y:").upper() 
-                if op_compra== "Y":
-                    self.carrito.confirmar_compra(mi_productos)   
-                    input("Presione Enter para vover al menu ...")
-                else:
-                    print("opcion incorrecta compra no realizada")   
+                if len(self.carrito.items) == 0:
+                    print("El carrito esta vacio:")
+                else:    
+                    op_compra= input("Para confirmar su compra presione Y:").upper() 
+                    if op_compra== "Y":
+                      self.carrito.confirmar_compra(mi_productos)   
+                      input("Presione Enter para vover al menu ...")
+                    else:
+                     print("opcion incorrecta compra no realizada")  
+                     
             elif opcion == "6":
                 limpiar_pantalla()
                 if len(self.carrito.items) == 0:
