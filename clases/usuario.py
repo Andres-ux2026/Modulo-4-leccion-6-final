@@ -59,7 +59,7 @@ class Admin(Usuario):
                 cod_prod = input("Ingrese ID del producto:")
                 if mi_productos.buscar_por_id(cod_prod):
                      print(f"ERROR: El ID '{cod_prod}' ya existe en el catálogo.")
-                     input("Presione Enter para intentar con otro ID...")
+                     input("Presione Enter para volver al menu...")
                      continue
                 nom_prod = input("Ingrese Nombre del producto:")
                 cat_prod = input("Ingrese categoria:")
@@ -78,8 +78,10 @@ class Admin(Usuario):
                 input("Presione Enter para volver al menu...")
             except ValueError:
                 print("ERROR: El precio y el stock deben ser números enteros.")
+                input("Presione Enter para volver al menú...")
             except Exception as e:
                  print(f"Ocurrió un error inesperado: {e}")
+                 input("Presione Enter para volver al menú...")
 
 
         elif opcion =="3":
@@ -159,6 +161,7 @@ class Admin(Usuario):
     
 
 
+
 class Cliente(Usuario):
     def __init__(self, rut, nombre, apellido, tipo_usuario):
         super().__init__(rut, nombre, apellido, tipo_usuario)
@@ -179,7 +182,7 @@ class Cliente(Usuario):
             print("5- confirmar compra:")
             print("6- <-- Volver al Menú Principal")
 
-            opcion= input("Ingrese una opcion: ")
+            opcion= input("Ingrese una opcion:")
             if opcion == "1":
                 limpiar_pantalla()
                 print("================================================================================")
@@ -227,36 +230,39 @@ class Cliente(Usuario):
                 print("=============================================")   
                 input("Presione Enter para vover al menu ...")
 
-            elif opcion =="5":
+            elif opcion == "5":
                 limpiar_pantalla()
                 print("==============================================")
                 print("               CONFIRMA TU COMPRA")
                 print("==============================================")
                 self.carrito.ver_carrito()
                 print("==============================================")
+                
                 if len(self.carrito.items) == 0:
-                    print("El carrito esta vacio:")
+                    input("Presione Enter para volver al menu ...")
                 else:    
-                    op_compra= input("Para confirmar su compra presione Y:").upper() 
-                    if op_compra== "Y":
-                      self.carrito.confirmar_compra(mi_productos)   
-                      input("Presione Enter para vover al menu ...")
+                    op_compra = input("Para confirmar su compra presione Y: ").upper() 
+                    if op_compra == "Y":
+                        self.carrito.confirmar_compra(mi_productos)   
+                        print("¡Compra realizada con éxito!")
                     else:
-                     print("opcion incorrecta compra no realizada")  
-                     
+                        print("Opcio incorrecta.")
+                        input("Presione Enter para volver al menu ...")
+
             elif opcion == "6":
                 limpiar_pantalla()
                 if len(self.carrito.items) == 0:
-                     break
-                op_salir = input("Hay productos en el carro de compras.Si sale se cancelara la compra. 'Si desea salir presione' 'Y':").upper()
+                    break
+                
+                op_salir = input("Hay productos en el carro. Si sale se eliminaran. ¿Salir? (Y): ").upper()
                 if op_salir == "Y":
-                        input("Productos eliminados del carro de compras...")
-                        self.carrito.devolver_stock_()
-                        break
+                    self.carrito.devolver_stock_()
+                    break
                 else:
-                     print("opcion invalida...")
-                     input("Presione Enter para continuar con su compra...")
-
-
+                    input("Presione Enter para continuar con su compra...")
+            
+            else:
+                print("Opción inválida.")
+                input("Presione Enter para reintentar...")
 
 
