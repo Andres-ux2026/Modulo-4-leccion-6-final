@@ -61,7 +61,9 @@ class Carrito():
             total = 0
             ahora = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             with open("ordenes.txt", "a") as archivo:
-                archivo.write(f"--- ORDEN DE COMPRA: {ahora}")
+                archivo.write(f"\n" + "="*40 + "\n") 
+                archivo.write(f"ORDEN DE COMPRA: {ahora}\n")
+                archivo.write("-" * 40 + "\n")
                 
                 for p, c in self.items.items():
                    
@@ -73,11 +75,11 @@ class Carrito():
                     linea = f"Producto: {p.nombre} | Cantidad: {c} | Subtotal: ${subtotal}\n"
                     archivo.write(linea)
                 
+                archivo.write("-" * 40 + "\n")
                 archivo.write(f"TOTAL PAGADO: ${total}\n")
-                archivo.write("-" * 40 + "\n\n")
+                archivo.write("="*40 + "\n")
                 catalogo.guardar_catalogo()  
 
-            print(f"Compra confirmada por ${total}")
             self.vaciar_carrito()
             return True
 

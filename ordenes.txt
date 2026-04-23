@@ -1,21 +1,27 @@
 
-
---- ORDEN DE COMPRA: 2026-04-19 15:11:04 ---
-Producto: calcetines | Cantidad: 9 | Subtotal: $90000
-TOTAL PAGADO: $90000
+========================================
+ORDEN DE COMPRA: 2026-04-23 21:37:24
 ----------------------------------------
-
---- ORDEN DE COMPRA: 2026-04-20 03:35:33Producto: colchon | Cantidad: 2 | Subtotal: $2400000
-TOTAL PAGADO: $2400000
+Producto: Televisor  | Cantidad: 2 | Subtotal: $600000
+Producto: Buzo | Cantidad: 1 | Subtotal: $20000
+Producto: Notebook  | Cantidad: 1 | Subtotal: $500000
 ----------------------------------------
+TOTAL PAGADO: $1120000
+========================================
 
---- ORDEN DE COMPRA: 2026-04-20 13:49:03Producto: colchon | Cantidad: 2 | Subtotal: $2400000
-TOTAL PAGADO: $2400000
+========================================
+ORDEN DE COMPRA: 2026-04-23 21:40:27
 ----------------------------------------
-
---- ORDEN DE COMPRA: 2026-04-20 21:04:02Producto: calcetines | Cantidad: 4 | Subtotal: $400000
-Producto: colchon | Cantidad: 1 | Subtotal: $1200000
-Producto: buzo  | Cantidad: 10 | Subtotal: $200000
-TOTAL PAGADO: $1800000
+Producto: Televisor  | Cantidad: 2 | Subtotal: $600000
+Producto: Buzo | Cantidad: 1 | Subtotal: $20000
 ----------------------------------------
+TOTAL PAGADO: $620000
+========================================
 
+========================================
+ORDEN DE COMPRA: 2026-04-23 21:41:42
+----------------------------------------
+Producto: Martillo | Cantidad: 1 | Subtotal: $5000
+----------------------------------------
+TOTAL PAGADO: $5000
+========================================

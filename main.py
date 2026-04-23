@@ -16,13 +16,13 @@ class Tienda:
 
          while True:
             limpiar_pantalla()    
-            print("==========================================")
+            print("="*40)
             print("       SISTEMA DE ECOMMERCE ")
-            print("==========================================")
+            print("="*40)
             print("1. Ingresar como ADMINISTRADOR")
             print("2. Ingresar como CLIENTE")
             print("3. Salir")
-            print("------------------------------------------")
+            print("="*40)
             try:
                  opcion = input("Seleccione el rol:")
             except EOFError:
