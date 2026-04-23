@@ -24,19 +24,29 @@ class Tienda:
             print("3. Salir")
             print("="*40)
             try:
-                 opcion = input("Seleccione el rol:")
+                 opcion = int(input("Seleccione el rol:"))
+            
+            except ValueError:
+                print("ERROR: La opción ingresada debe ser un numero")
+                input("Presione Enter para reintentar...")
+                continue
             except EOFError:
                 print("Error de lectura cerrando programa")
                 break
-            if opcion == "1":
+            if opcion == 1:
                 
                 self.admin_actual.menu_admin(self.catalogo)
 
-            elif opcion =="2":
-                
+            elif opcion ==2:
                 self.cliente_actual.menu_cliente(self.catalogo)
-            else: 
+
+            elif opcion ==3:    
                 break
+                
+            else: 
+                print("Por favor, ingrese 1, 2 o 3.")
+                input("Presione Enter para reintentar...")
+                
 
 
 if __name__ == "__main__":
