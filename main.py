@@ -40,5 +40,10 @@ class Tienda:
 
 
 if __name__ == "__main__":
-    tienda = Tienda()
-    tienda.iniciar()
+    try: 
+        tienda = Tienda()
+        tienda.iniciar()
+    except KeyboardInterrupt:
+        print("Saliendo del sistema...")
+    except Exception as e:
+        print(f"Error inesperado: {e}")    
