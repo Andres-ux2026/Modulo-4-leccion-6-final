@@ -1,4 +1,4 @@
-1,Televisor ,Tecnologia,300000,10
-2,Notebook ,Tecnologia ,500000,19
-3,Martillo,Construccion,5000,12
-4,Buzo,Vestuario,20000,18
+1,Televisor,Tecnologia,300000,20
+2,Notbook ,Tecnologia,500000,20
+3,Martillo ,Construccion,5000,20
+4,Buzo,Vestuario ,20000,20
